@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eurekaclinical</groupId>
+	<artifactId>scribe-up-ext</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>ScribeUP Extensions</name>
+	<description>This code library updates and adds OAuth providers to the base ScribeUP 
+library, available from https://github.com/PeterKnego/scribe-up.</description>
+	<inceptionYear>2014</inceptionYear>
+    
+	<organization>
+		<name>Emory University</name>
+		<url>http://www.emory.edu</url>
+	</organization>
+
+	<url>http://aiw.sourceforge.net/dev/${project.build.finalName}</url>
+    
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<support.email>help@eurekaclinical.org</support.email>
+	</properties>
+	
+	<scm>
+		<developerConnection>scm:git:ssh://git.cci.emory.edu/opt/git/aiw/scribe-up-ext</developerConnection>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>manual</distribution>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>JIRA</system>
+		<url>http://jira.cci.emory.edu:8080/jira/secure/Dashboard.jspa</url>
+	</issueManagement>
+
+	<distributionManagement>
+		<site>
+			<id>aiw.sourceforge.net</id>
+			<url>scp://shell.sourceforge.net/home/project-web/aiw/htdocs/dev/${project.build.finalName}</url>
+		</site>
+		<repository>
+			<id>aiw</id>
+			<name>AIW Repo</name>
+			<url>http://maven.cci.emory.edu/nexus/content/repositories/aiw/</url>
+		</repository>
+		<snapshotRepository>
+			<id>aiw-snapshots</id>
+			<name>AIW Snapshots Repo</name>
+			<url>http://maven.cci.emory.edu/nexus/content/repositories/aiw-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+        
+	<repositories>
+		<repository>
+			<id>maven.cci</id>
+			<url>http://maven.cci.emory.edu/nexus/content/repositories/public</url>
+		</repository>
+		<repository>
+			<id>aiw</id>
+			<url>http://maven.cci.emory.edu/nexus/content/repositories/aiw/</url>
+		</repository>
+	</repositories>
+	
+	<developers>
+        <developer>
+            <id>arpost</id>
+            <name>Andrew Post</name>
+            <email>arpost@emory.edu</email>
+            <roles>
+                <role>Faculty Project Lead</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+        <developer>
+            <id>hrathod</id>
+            <name>Himanshu Rathod</name>
+            <email>himanshu.rathod@emory.edu</email>
+            <roles>
+                <role>Software Developer</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+        <developer>
+            <id>mmansour</id>
+            <name>Michel Mansour</name>
+            <email>michel.mansour@emory.edu</email>
+            <roles>
+                <role>Software Developer</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+        <developer>
+            <id>wtorian</id>
+            <name>Mike Torian</name>
+            <email>william.m.torian@emory.edu</email>
+            <roles>
+                <role>Data Warehouse Engineer</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+        <developer>
+            <id>akalsan</id>
+            <name>Akshatha Kalsanka Pai</name>
+            <email>akalsan@emory.edu</email>
+            <roles>
+                <role>Software Developer</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+        <developer>
+            <id>richard.willard</id>
+            <name>Richie Willard</name>
+            <email>richard.willard@emoryhealthcare.org</email>
+            <roles>
+                <role>Project Manager</role>
+            </roles>
+            <organization>Department of Biomedical Informatics, Emory
+                University
+            </organization>
+        </developer>
+    </developers>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>2.2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>timestamp-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>currentYear</name>
+							<pattern>yyyy</pattern>
+							<units>year</units>
+							<offset>0</offset>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <!--  Tests are handled by testing profiles below -->
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <delimiters>
+                        <delimiter>${*}</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.7</version>
+                <configuration>
+                    <licenseName>apache_v2</licenseName>
+                    <roots>
+                        <root>src/main</root>
+                        <root>src/test/java/</root>
+                    </roots>
+                    <extraExtensions>
+                        <!-- .xsd files are not supported by default -->
+                        <!-- but should be commented in XML style -->
+                        <xsd>xml</xsd>
+                    </extraExtensions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>first</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jasig.maven</groupId>
+                <artifactId>maven-notice-plugin</artifactId>
+                <version>1.0.6.1</version>
+                <configuration>
+                    <noticeTemplate>etc/NOTICE.template</noticeTemplate>
+                </configuration>
+                <executions>
+                    <execution>	
+                        <id>checkontest</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly/src.xml</descriptor>
+                        <descriptor>assembly/bin.xml</descriptor>
+                    </descriptors>
+                    <tarLongFileMode>gnu</tarLongFileMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+	
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin
+				</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin
+				</artifactId>
+				<version>2.16</version>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<configLocation>http://aiw.sourceforge.net/dev/aiw-checkstyle-1.0/eureka-checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.scribe</groupId>
+			<artifactId>scribe-up</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+	</dependencies>
+</project>
