@@ -25,6 +25,7 @@ package org.eurekaclinical.scribeupext.profile;
  * @author Andrew Post
  */
 public class GitHubProfile extends EurekaProfile {
+	private static final long serialVersionUID = 1;
 
 	@Override
 	public String getType() {

@@ -32,8 +32,6 @@ import org.scribe.up.profile.Gender;
  */
 public abstract class EurekaProfile extends BaseOAuthProfile implements CommonProfile {
 	
-	private static final long serialVersionUID = 1;
-	
 	public abstract String getType();
 	
 	@Override
