@@ -25,5 +25,8 @@ package org.eurekaclinical.scribeupext.profile;
  * @author Andrew Post
  */
 public class GlobusProfile extends EurekaProfile {
-	
+	@Override
+	public String getType() {
+		return "Globus";
+	}
 }

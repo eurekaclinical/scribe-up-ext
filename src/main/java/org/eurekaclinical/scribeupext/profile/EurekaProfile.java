@@ -30,10 +30,12 @@ import org.scribe.up.profile.Gender;
  *
  * @author arpost
  */
-public class EurekaProfile extends BaseOAuthProfile implements CommonProfile {
+public abstract class EurekaProfile extends BaseOAuthProfile implements CommonProfile {
 	
 	private static final long serialVersionUID = 1;
-
+	
+	public abstract String getType();
+	
 	@Override
     protected AttributesDefinition getAttributesDefinition() {
         return OAuthAttributesDefinitions.eurekaDefinition;

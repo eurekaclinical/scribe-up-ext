@@ -25,5 +25,10 @@ package org.eurekaclinical.scribeupext.profile;
  * @author Andrew Post
  */
 public class GitHubProfile extends EurekaProfile {
+
+	@Override
+	public String getType() {
+		return "GitHub";
+	}
 	
 }
