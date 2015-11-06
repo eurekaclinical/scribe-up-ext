@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eurekaclinical</groupId>
 	<artifactId>scribe-up-ext</artifactId>
-	<version>1.0-Alpha-1</version>
+	<version>1.0-Alpha-2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>ScribeUP Extensions</name>
 	<description>This code library updates and adds OAuth providers to the base ScribeUP 
@@ -24,7 +24,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 	
 	<scm>
 		<developerConnection>scm:git:ssh://git.cci.emory.edu/opt/git/aiw/scribe-up-ext</developerConnection>
-	  <tag>scribe-up-ext-1.0-Alpha-1</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<licenses>
