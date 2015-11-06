@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eurekaclinical</groupId>
 	<artifactId>scribe-up-ext</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0-Alpha-2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>ScribeUP Extensions</name>
 	<description>This code library updates and adds OAuth providers to the base ScribeUP 
@@ -24,7 +24,8 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 	
 	<scm>
 		<developerConnection>scm:git:ssh://git.cci.emory.edu/opt/git/aiw/scribe-up-ext</developerConnection>
-	</scm>
+	  <tag>HEAD</tag>
+  </scm>
 
 	<licenses>
 		<license>
@@ -141,7 +142,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
+				<version>2.6</version>
 				<configuration>
 					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
 				</configuration>
@@ -149,7 +150,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.3</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -163,19 +164,19 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.4</version>
 				<dependencies>
 					<dependency>
 						<groupId>org.apache.maven.wagon</groupId>
 						<artifactId>wagon-ssh</artifactId>
-						<version>2.2</version>
+						<version>2.10</version>
 					</dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.8</version>
+				<version>1.9.1</version>
 				<executions>
 					<execution>
 						<id>parse-version</id>
@@ -200,7 +201,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>2.10.3</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -214,7 +215,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
+                <version>2.19</version>
                 <configuration>
                     <!--  Tests are handled by testing profiles below -->
                     <skipTests>true</skipTests>
@@ -223,7 +224,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>2.7</version>
                 <configuration>
                     <delimiters>
                         <delimiter>${*}</delimiter>
@@ -234,7 +235,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>1.7</version>
+                <version>1.8</version>
                 <configuration>
                     <licenseName>apache_v2</licenseName>
                     <roots>
@@ -277,7 +278,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
+                <version>2.6</version>
                 <configuration>
                     <descriptors>
                         <descriptor>assembly/src.xml</descriptor>
@@ -297,7 +298,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -306,6 +307,11 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
             </plugin>
 		</plugins>
 	</build>
