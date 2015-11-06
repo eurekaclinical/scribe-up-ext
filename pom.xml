@@ -190,6 +190,7 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 							<goal>timestamp-property</goal>
 						</goals>
 						<configuration>
+							<locale>en,US</locale>
 							<name>currentYear</name>
 							<pattern>yyyy</pattern>
 							<units>year</units>
@@ -216,21 +217,6 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19</version>
-                <configuration>
-                    <!--  Tests are handled by testing profiles below -->
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <delimiters>
-                        <delimiter>${*}</delimiter>
-                    </delimiters>
-                    <useDefaultDelimiters>false</useDefaultDelimiters>
-                </configuration>
             </plugin>
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -278,7 +264,8 @@ library, available from https://github.com/PeterKnego/scribe-up.</description>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
+				<!-- newer versions don't filter correctly. -->
+                <version>2.4.1</version>
                 <configuration>
                     <descriptors>
                         <descriptor>assembly/src.xml</descriptor>
