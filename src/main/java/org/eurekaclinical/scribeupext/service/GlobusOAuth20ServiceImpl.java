@@ -18,6 +18,10 @@ package org.eurekaclinical.scribeupext.service;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+ * 
+ * 20160222 - Stephen Granite (sgranite@jhu.edu) - added redirect_uri parameter to authorization request
+ * This was done to resolve a change in Globus Authenticaton that required the redirect to be in the 
+ * access token call as well
  */
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -65,6 +69,7 @@ public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
 		request.addHeader("Authorization", basicAuth);
 		request.addBodyParameter("grant_type", "authorization_code");
 		request.addBodyParameter("code", verifier.getValue());
+		request.addBodyParameter("redirect_uri", config.getCallback());
 		Response response = request.send();
 		String body = response.getBody();
 		JsonNode json = JsonHelper.getFirstNode(body);
