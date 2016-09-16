@@ -13,8 +13,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 This project includes:
-  Apache Commons Codec under Apache License, Version 2.0
-  Apache Commons Lang under Apache License, Version 2.0
+  Commons Codec under The Apache Software License, Version 2.0
+  Commons Lang under The Apache Software License, Version 2.0
   Jackson-annotations under The Apache Software License, Version 2.0
   Jackson-core under The Apache Software License, Version 2.0
   jackson-databind under The Apache Software License, Version 2.0 or Lesser Gnu Public License (LGPL), Version 2.1
