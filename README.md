@@ -2,13 +2,13 @@
 [Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
-It is a library that patches the [ScribeUP OAuth library](https://github.com/scribejava/scribejava) to support additional OAuth providers. It standardizes the attribute names of user profiles from those providers. The supported OAuth providers are (the names of the classes that implement use of the providers are in parentheses):
+It is a library that patches the [ScribeUP OAuth library](https://github.com/scribejava/scribejava) to support additional OAuth providers. It standardizes the attribute names of user profiles from those providers. The supported OAuth providers are (the classes that implement use of the providers are in parentheses):
 * GitHub (`org.eurekaclinical.scribeupext.provider.GitHubProvider`)
 * Globus (`org.eurekaclinical.scribeupext.provider.GlobusProvider`)
 * Google (`org.eurekaclinical.scribeupext.provider.Google2Provider`)
 * Twitter (`org.eurekaclinical.scribeupext.provider.TwitterProvider`)
 
-It depends on ScribeUP version 1.3.1, which integrates with the [Eureka! Clinical CAS server](https://github.com/eurekaclinical/cas) to provide its OAuth-based authentication functionality. Making Eureka! Clinical CAS depend upon this library makes the library's additional OAuth providers available for use in CAS.
+It depends on ScribeUP version 1.3.1, which integrates with the [Eureka! Clinical CAS server](https://github.com/eurekaclinical/cas) to provide its OAuth-based authentication functionality. Making Eureka! Clinical CAS depend upon this library makes the library's additional OAuth providers available for use in CAS. You reference these providers in CAS by the class names above.
 
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext)
 
