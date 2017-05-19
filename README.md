@@ -5,7 +5,7 @@
 It is a library that has patches to ScribeUP that add support for more OAuth providers.
 
 ## Version 1.0 development series
-Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-i2b2-integration-service/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-i2b2-integration-service)
+Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext)
 
 ## Build requirements
 * [Oracle Java JDK 8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
