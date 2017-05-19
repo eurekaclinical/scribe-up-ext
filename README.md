@@ -1,7 +1,7 @@
 # ScribeUP Extensions
 [Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
-## What does it to?
+## What does it do?
 It is a library that has patches to ScribeUP that add support for more OAuth providers.
 
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext)
