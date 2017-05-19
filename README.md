@@ -2,7 +2,7 @@
 [Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
-It is a library that patches the [ScribeUP OAuth library](https://github.com/scribejava/scribejava) to support additional OAuth providers. It standardizes the attribute names of user profiles from those providers. The supported OAuth providers are (the names of the classes that implement the providers are in parentheses):
+It is a library that patches the [ScribeUP OAuth library](https://github.com/scribejava/scribejava) to support additional OAuth providers. It standardizes the attribute names of user profiles from those providers. The supported OAuth providers are (the names of the classes that implement use of the providers are in parentheses):
 * GitHub (`org.eurekaclinical.scribeupext.provider.GitHubProvider`)
 * Globus (`org.eurekaclinical.scribeupext.provider.GlobusProvider`)
 * Google (`org.eurekaclinical.scribeupext.provider.Google2Provider`)
