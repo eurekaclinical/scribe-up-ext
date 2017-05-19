@@ -2,7 +2,7 @@
 [Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
-It is a library that has patches to ScribeUP that supports additional OAuth providers. It also provides user profiles starting from a base class that standardizes profile attribute names. The supported OAuth providers are:
+It is a library that patches the ScribeUP OAuth library to support additional OAuth providers. It standardizes the attribute names of user profiles from those providers. The supported OAuth providers are:
 * GitHub
 * Globus
 * Google
