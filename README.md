@@ -8,7 +8,7 @@ It is a library that patches the [ScribeUP OAuth library](https://github.com/scr
 * Google
 * Twitter
 
-It depends on ScribeUP version 1.3.1, which integrates with the [Eureka! Clinical CAS server](https://github.com/eurekaclinical/cas) to provide its OAuth-based authentication functionality.
+It depends on ScribeUP version 1.3.1, which integrates with the [Eureka! Clinical CAS server](https://github.com/eurekaclinical/cas) to provide its OAuth-based authentication functionality. Making Eureka! Clinical CAS depend upon this library makes the library's additional OAuth providers available for use in CAS.
 
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext)
 
