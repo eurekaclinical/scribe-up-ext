@@ -2,7 +2,11 @@
 [Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
-It is a library that has patches to ScribeUP that add support for more OAuth providers.
+It is a library that has patches to ScribeUP that supports additional OAuth providers. It also provides user profiles starting from a base class that standardizes profile attribute names. The supported OAuth providers are:
+* GitHub
+* Globus
+* Google
+* Twitter
 
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/scribe-up-ext)
 
