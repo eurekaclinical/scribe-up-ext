@@ -25,14 +25,6 @@
         <tag>HEAD</tag>
     </scm>
 
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/eurekaclinical/scribe-up-ext/issues</url>
