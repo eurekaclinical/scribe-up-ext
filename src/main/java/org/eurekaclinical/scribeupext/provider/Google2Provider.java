@@ -27,7 +27,9 @@ import org.scribe.up.profile.UserProfile;
 import org.scribe.up.profile.google2.Google2AttributesDefinition;
 
 /**
- * Fixes bug where the scope is set incorrectly.
+ * Extracts the user's Google profile. This subclass of the original Google
+ * OAuth2 provider fixes a bug where the scope is set incorrectly, and it 
+ * populates the profile attributes that Eureka! Clinical expects.
  *
  * @author Andrew Post
  */
@@ -37,6 +39,14 @@ public class Google2Provider extends org.scribe.up.provider.impl.Google2Provider
         setScope(this.scope);
     }
 
+    /**
+     * Returns the user's profile using the attributes that Eureka! Clinical 
+     * expects.
+     * 
+     * @param body the JSON response from the user profile request.
+     * 
+     * @return the user's profile.
+     */
     @Override
     protected UserProfile extractUserProfile(final String body) {
         final GoogleProfile profile = new GoogleProfile();

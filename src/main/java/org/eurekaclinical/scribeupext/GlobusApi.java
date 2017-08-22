@@ -28,7 +28,8 @@ import org.scribe.utils.OAuthEncoder;
 import org.scribe.utils.Preconditions;
 
 /**
- *
+ * The Globus API for authorizing the user and getting an access token.
+ * 
  * @author Andrew Post
  */
 public class GlobusApi extends DefaultApi20 {
@@ -40,21 +41,45 @@ public class GlobusApi extends DefaultApi20 {
      */
     private static final String SCOPES = "openid email profile";
 
+    /**
+     * Returns the URL for requesting an access token.
+     * 
+     * @return the URL for requesting an access token.
+     */
     @Override
     public String getAccessTokenEndpoint() {
         return "https://auth.globus.org/v2/oauth2/token";
     }
 
+    /**
+     * Returns the verb to use for requesting an access token.
+     * 
+     * @return the verb to use for requesting an access token.
+     */
     @Override
     public Verb getAccessTokenVerb() {
         return Verb.POST;
     }
 
+    /**
+     * Returns an object for parsing a successful response from the 
+     * authorization call and extracting the access token.
+     * 
+     * @return an object that can extract the access token from Globus' 
+     * response.
+     */
     @Override
     public AccessTokenExtractor getAccessTokenExtractor() {
         return new JsonTokenExtractor();
     }
 
+    /**
+     * Returns the URL for authorizing the user.
+     * 
+     * @param config query parameters to add to the base URL.
+     * 
+     * @return the URL for authorizing the user.
+     */
     @Override
     public String getAuthorizationUrl(OAuthConfig config) {
         Preconditions.checkValidUrl(config.getCallback(),

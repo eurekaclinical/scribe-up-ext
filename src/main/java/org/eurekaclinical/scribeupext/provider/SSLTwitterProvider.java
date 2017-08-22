@@ -27,16 +27,33 @@ import org.scribe.up.profile.UserProfile;
 import org.scribe.up.profile.twitter.TwitterAttributesDefinition;
 
 /**
- *
+ * Extracts the user's Twitter profile. This subclass of the original Google
+ * OAuth2 provider overrides the URL for getting the user's profile with the
+ * current URL, and it populates the profile attributes that Eureka! Clinical 
+ * expects.
+ * 
  * @author Andrew Post
  */
 public class SSLTwitterProvider extends org.scribe.up.provider.impl.TwitterProvider {
 
+    /**
+     * Returns the current URL for requesting the user's profile.
+     * 
+     * @return the URL for requesting the user's profile.
+     */
     @Override
     protected String getProfileUrl() {
         return "https://api.twitter.com/1.1/account/verify_credentials.json";
     }
 
+    /**
+     * Returns the user's profile using the attributes that Eureka! Clinical 
+     * expects.
+     * 
+     * @param body the JSON response from the user profile request.
+     * 
+     * @return the user's profile.
+     */
     @Override
     protected UserProfile extractUserProfile(final String body) {
         final TwitterProfile profile = new TwitterProfile();

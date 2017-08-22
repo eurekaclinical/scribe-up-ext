@@ -27,11 +27,22 @@ import org.scribe.up.profile.UserProfile;
 import org.scribe.up.profile.github.GitHubAttributesDefinition;
 
 /**
- *
+ * Extracts the user's GitHub profile. This subclass of the original GitHub
+ * OAuth provider populates the profile attributes that Eureka! Clinical 
+ * expects.
+ * 
  * @author Andrew Post
  */
 public class GitHubProvider extends org.scribe.up.provider.impl.GitHubProvider {
 
+    /**
+     * Returns the user's profile using the attributes that Eureka! Clinical 
+     * expects.
+     * 
+     * @param body the JSON response from the user profile request.
+     * 
+     * @return the user's profile.
+     */
     @Override
     protected UserProfile extractUserProfile(String body) {
         final GitHubProfile profile = new GitHubProfile();

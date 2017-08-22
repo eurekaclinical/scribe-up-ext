@@ -38,7 +38,8 @@ import org.scribe.up.provider.BaseOAuth20Provider;
 import org.scribe.up.provider.exception.HttpException;
 
 /**
- *
+ * Extracts the user's Globus profile.
+ * 
  * @author Andrew Post
  */
 public class GlobusProvider extends BaseOAuth20Provider {
@@ -56,6 +57,11 @@ public class GlobusProvider extends BaseOAuth20Provider {
                 this.proxyPort);
     }
 
+    /**
+     * Returns the current URL for requesting the user's profile.
+     * 
+     * @return the URL for requesting the user's profile.
+     */
     @Override
     protected String getProfileUrl() {
         return "https://auth.globus.org/v2/oauth2/userinfo";
@@ -81,6 +87,14 @@ public class GlobusProvider extends BaseOAuth20Provider {
         return body;
     }
 
+    /**
+     * Returns the user's profile using the attributes that Eureka! Clinical 
+     * expects.
+     * 
+     * @param body the JSON response from the user profile request.
+     * 
+     * @return the user's profile.
+     */
     @Override
     protected UserProfile extractUserProfile(final String body) {
         GlobusProfile profile = new GlobusProfile();
