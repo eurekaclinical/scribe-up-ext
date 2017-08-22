@@ -23,7 +23,8 @@ import org.scribe.up.profile.OAuthAttributesDefinition;
 import org.scribe.up.profile.converter.Converters;
 
 /**
- *
+ * The user profile attributes that Eureka! Clinical's CAS server expects.
+ * 
  * @author Andrew Post
  */
 public class EurekaAttributesDefinition extends OAuthAttributesDefinition {
@@ -35,6 +36,9 @@ public class EurekaAttributesDefinition extends OAuthAttributesDefinition {
     public static final String EMAIL = "email";
     public static final String ORGANIZATION = "organization";
 
+    /**
+     * Creates attribute definitions for ScribeUP to use.
+     */
     public EurekaAttributesDefinition() {
         String[] names = new String[]{
             USERNAME, FULLNAME, EMAIL, ORGANIZATION

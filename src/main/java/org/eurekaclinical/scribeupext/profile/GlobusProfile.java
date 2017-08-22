@@ -20,13 +20,20 @@ package org.eurekaclinical.scribeupext.profile;
  * #L%
  */
 /**
- *
+ * A Globus user profile with the attributes that Eureka! Clinical expects.
+ * 
  * @author Andrew Post
  */
 public class GlobusProfile extends EurekaProfile {
 
     private static final long serialVersionUID = 1;
 
+    /**
+     * Gets the Globus profile type, which is used by the CAS login screen
+     * in the OAuth links.
+     * 
+     * @return the profile type string.
+     */
     @Override
     public String getType() {
         return "Globus";

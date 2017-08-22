@@ -20,7 +20,8 @@ package org.eurekaclinical.scribeupext.profile;
  * #L%
  */
 /**
- *
+ * Constants for the Globus profile attributes that Eureka! Clinical uses.
+ * 
  * @author Andrew Post
  */
 public class GlobusAttributesDefinition {
