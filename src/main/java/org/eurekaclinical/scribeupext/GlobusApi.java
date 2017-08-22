@@ -33,11 +33,16 @@ import org.scribe.utils.Preconditions;
  * @author Andrew Post
  */
 public class GlobusApi extends DefaultApi20 {
-	private static final String AUTHORIZE_URL = "https://www.globus.org/OAuth?response_type=code&client_id=%s&redirect_uri=%s";
+	private static final String AUTHORIZE_URL = "https://auth.globus.org/v2/oauth2/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=%s";
+	
+	/**
+	 * Space-delimited set of scopes.
+	 */
+	private static final String SCOPES = "openid email profile";
 	
 	@Override
 	public String getAccessTokenEndpoint() {
-		return "https://nexus.api.globusonline.org/goauth/token";
+		return "https://auth.globus.org/v2/oauth2/token";
 	}
 	
 	@Override
@@ -55,6 +60,6 @@ public class GlobusApi extends DefaultApi20 {
 		Preconditions.checkValidUrl(config.getCallback(),
 				"Must provide a valid url as callback.");
 		return String.format(AUTHORIZE_URL, config.getApiKey(), 
-				OAuthEncoder.encode(config.getCallback()));
+				OAuthEncoder.encode(config.getCallback()), SCOPES);
 	}
 }

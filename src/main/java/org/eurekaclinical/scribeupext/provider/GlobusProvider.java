@@ -58,15 +58,12 @@ public class GlobusProvider extends BaseOAuth20Provider {
 	
 	@Override
 	protected String getProfileUrl() {
-		return "https://nexus.api.globusonline.org/users/%s";
+		return "https://auth.globus.org/v2/oauth2/userinfo";
 	}
 
 	@Override
 	protected String sendRequestForData(Token accessToken, String dataUrl) throws HttpException {
-		System.out.println("Access token is " + accessToken.getSecret() + "; " + accessToken.getToken());
-		String dataUrlCompleted = String.format(dataUrl, ((GlobusOAuth20ServiceImpl) this.service).getUsername());
-		System.out.println("dataUrlCompleted: " + dataUrlCompleted);
-        final ProxyOAuthRequest request = new ProxyOAuthRequest(Verb.GET, dataUrlCompleted, this.proxyHost, this.proxyPort);
+        final ProxyOAuthRequest request = new ProxyOAuthRequest(Verb.GET, dataUrl, this.proxyHost, this.proxyPort);
         if (this.connectTimeout != 0) {
             request.setConnectTimeout(this.connectTimeout, TimeUnit.MILLISECONDS);
         }
@@ -89,8 +86,9 @@ public class GlobusProvider extends BaseOAuth20Provider {
 		GlobusProfile profile = new GlobusProfile();
 		JsonNode json = JsonHelper.getFirstNode(body);
 		if (json != null) {
-			profile.setId(JsonHelper.get(json, GlobusAttributesDefinition.USERNAME));
-			profile.addAttribute(EurekaAttributesDefinition.USERNAME, JsonHelper.get(json, GlobusAttributesDefinition.USERNAME));
+			String username = JsonHelper.get(json, GlobusAttributesDefinition.USERNAME).toString().split("@")[0];
+			profile.setId(username);
+			profile.addAttribute(EurekaAttributesDefinition.USERNAME, username);
 			profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GlobusAttributesDefinition.FULLNAME));
 			profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, GlobusAttributesDefinition.EMAIL));
 		}

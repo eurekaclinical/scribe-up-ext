@@ -25,7 +25,7 @@ package org.eurekaclinical.scribeupext.profile;
  * @author Andrew Post
  */
 public class GlobusAttributesDefinition {
-	public static final String USERNAME = "username";
-	public static final String FULLNAME = "fullname";
+	public static final String USERNAME = "preferred_username";
+	public static final String FULLNAME = "name";
 	public static final String EMAIL = "email";
 }

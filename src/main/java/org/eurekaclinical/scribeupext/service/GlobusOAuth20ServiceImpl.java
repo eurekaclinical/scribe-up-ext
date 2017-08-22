@@ -44,7 +44,6 @@ public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
 	protected final OAuthConfig config;
 	protected final String proxyHost;
 	protected final int proxyPort;
-	private String username;
 
 	public GlobusOAuth20ServiceImpl(DefaultApi20 api, OAuthConfig config,
 			String proxyHost, int proxyPort) {
@@ -55,10 +54,6 @@ public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
 		this.proxyPort = proxyPort;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-	
 	@Override
 	public Token getAccessToken(Token requestToken, Verifier verifier) {
 		OAuthRequest request = 
@@ -74,7 +69,6 @@ public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
 		String body = response.getBody();
 		JsonNode json = JsonHelper.getFirstNode(body);
 		if (json != null) {
-			this.username = (String) JsonHelper.get(json, "user_name");
 			return new Token((String) JsonHelper.get(json, "access_token"), "", body);
 		} else {
 			return null;
@@ -84,6 +78,6 @@ public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
 
 	@Override
 	public void signRequest(Token accessToken, OAuthRequest request) {
-		request.addHeader("X-Globus-Goauthtoken", accessToken.getToken());
+		request.addHeader("Authorization", "Bearer " + accessToken.getToken());
 	}
 }
