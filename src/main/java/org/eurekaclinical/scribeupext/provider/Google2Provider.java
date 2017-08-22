@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext.provider;
  * limitations under the License.
  * #L%
  */
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
 import org.eurekaclinical.scribeupext.profile.GoogleProfile;
@@ -29,25 +28,26 @@ import org.scribe.up.profile.google2.Google2AttributesDefinition;
 
 /**
  * Fixes bug where the scope is set incorrectly.
+ *
  * @author Andrew Post
  */
 public class Google2Provider extends org.scribe.up.provider.impl.Google2Provider {
 
-	public Google2Provider() {
-		setScope(this.scope);
-	}
-	
-	@Override
+    public Google2Provider() {
+        setScope(this.scope);
+    }
+
+    @Override
     protected UserProfile extractUserProfile(final String body) {
         final GoogleProfile profile = new GoogleProfile();
         final JsonNode json = JsonHelper.getFirstNode(body);
         if (json != null) {
             profile.setId(JsonHelper.get(json, "id"));
-			profile.addAttribute(EurekaAttributesDefinition.USERNAME, JsonHelper.get(json, Google2AttributesDefinition.EMAIL));
-			profile.addAttribute(EurekaAttributesDefinition.FIRSTNAME, JsonHelper.get(json, Google2AttributesDefinition.GIVEN_NAME));
-			profile.addAttribute(EurekaAttributesDefinition.LASTNAME, JsonHelper.get(json, Google2AttributesDefinition.FAMILY_NAME));
-			profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, Google2AttributesDefinition.NAME));
-			profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, Google2AttributesDefinition.EMAIL));
+            profile.addAttribute(EurekaAttributesDefinition.USERNAME, JsonHelper.get(json, Google2AttributesDefinition.EMAIL));
+            profile.addAttribute(EurekaAttributesDefinition.FIRSTNAME, JsonHelper.get(json, Google2AttributesDefinition.GIVEN_NAME));
+            profile.addAttribute(EurekaAttributesDefinition.LASTNAME, JsonHelper.get(json, Google2AttributesDefinition.FAMILY_NAME));
+            profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, Google2AttributesDefinition.NAME));
+            profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, Google2AttributesDefinition.EMAIL));
         }
         return profile;
     }

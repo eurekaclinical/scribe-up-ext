@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext.provider;
  * limitations under the License.
  * #L%
  */
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
 import org.eurekaclinical.scribeupext.profile.GitHubProfile;
@@ -33,18 +32,18 @@ import org.scribe.up.profile.github.GitHubAttributesDefinition;
  */
 public class GitHubProvider extends org.scribe.up.provider.impl.GitHubProvider {
 
-	@Override
-	protected UserProfile extractUserProfile(String body) {
-		final GitHubProfile profile = new GitHubProfile();
+    @Override
+    protected UserProfile extractUserProfile(String body) {
+        final GitHubProfile profile = new GitHubProfile();
         final JsonNode json = JsonHelper.getFirstNode(body);
         if (json != null) {
             profile.setId(JsonHelper.get(json, "id"));
-			profile.addAttribute(EurekaAttributesDefinition.USERNAME, JsonHelper.get(json, GitHubAttributesDefinition.LOGIN));
-			profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GitHubAttributesDefinition.NAME));
-			profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, GitHubAttributesDefinition.EMAIL));
-			profile.addAttribute(EurekaAttributesDefinition.ORGANIZATION, JsonHelper.get(json, GitHubAttributesDefinition.COMPANY));
+            profile.addAttribute(EurekaAttributesDefinition.USERNAME, JsonHelper.get(json, GitHubAttributesDefinition.LOGIN));
+            profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GitHubAttributesDefinition.NAME));
+            profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, GitHubAttributesDefinition.EMAIL));
+            profile.addAttribute(EurekaAttributesDefinition.ORGANIZATION, JsonHelper.get(json, GitHubAttributesDefinition.COMPANY));
         }
         return profile;
-	}
-	
+    }
+
 }

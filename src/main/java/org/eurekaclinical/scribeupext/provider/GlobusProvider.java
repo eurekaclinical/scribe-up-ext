@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext.provider;
  * limitations under the License.
  * #L%
  */
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.eurekaclinical.scribeupext.GlobusApi;
 import org.eurekaclinical.scribeupext.profile.EurekaAttributesDefinition;
@@ -43,26 +42,27 @@ import org.scribe.up.provider.exception.HttpException;
  * @author Andrew Post
  */
 public class GlobusProvider extends BaseOAuth20Provider {
-	@Override
-	protected GlobusProvider newProvider() {
-		return new GlobusProvider();
-	}
-	
-	@Override
-	protected void internalInit() {
-		this.service = new GlobusOAuth20ServiceImpl(new GlobusApi(),
-			new OAuthConfig(this.key, this.secret, this.callbackUrl,
-			SignatureType.Header, "user", null), this.proxyHost, 
-				this.proxyPort);
-	}
-	
-	@Override
-	protected String getProfileUrl() {
-		return "https://auth.globus.org/v2/oauth2/userinfo";
-	}
 
-	@Override
-	protected String sendRequestForData(Token accessToken, String dataUrl) throws HttpException {
+    @Override
+    protected GlobusProvider newProvider() {
+        return new GlobusProvider();
+    }
+
+    @Override
+    protected void internalInit() {
+        this.service = new GlobusOAuth20ServiceImpl(new GlobusApi(),
+                new OAuthConfig(this.key, this.secret, this.callbackUrl,
+                        SignatureType.Header, "user", null), this.proxyHost,
+                this.proxyPort);
+    }
+
+    @Override
+    protected String getProfileUrl() {
+        return "https://auth.globus.org/v2/oauth2/userinfo";
+    }
+
+    @Override
+    protected String sendRequestForData(Token accessToken, String dataUrl) throws HttpException {
         final ProxyOAuthRequest request = new ProxyOAuthRequest(Verb.GET, dataUrl, this.proxyHost, this.proxyPort);
         if (this.connectTimeout != 0) {
             request.setConnectTimeout(this.connectTimeout, TimeUnit.MILLISECONDS);
@@ -71,7 +71,7 @@ public class GlobusProvider extends BaseOAuth20Provider {
             request.setReadTimeout(this.readTimeout, TimeUnit.MILLISECONDS);
         }
         this.service.signRequest(accessToken, request);
-		request.addHeader("Content-Type", "application/json");
+        request.addHeader("Content-Type", "application/json");
         final Response response = request.send();
         final int code = response.getCode();
         final String body = response.getBody();
@@ -79,19 +79,19 @@ public class GlobusProvider extends BaseOAuth20Provider {
             throw new HttpException(code, body);
         }
         return body;
-	}
-	
-	@Override
-	protected UserProfile extractUserProfile(final String body) {
-		GlobusProfile profile = new GlobusProfile();
-		JsonNode json = JsonHelper.getFirstNode(body);
-		if (json != null) {
-			String username = JsonHelper.get(json, GlobusAttributesDefinition.USERNAME).toString().split("@")[0];
-			profile.setId(username);
-			profile.addAttribute(EurekaAttributesDefinition.USERNAME, username);
-			profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GlobusAttributesDefinition.FULLNAME));
-			profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, GlobusAttributesDefinition.EMAIL));
-		}
-		return profile;
-	}
+    }
+
+    @Override
+    protected UserProfile extractUserProfile(final String body) {
+        GlobusProfile profile = new GlobusProfile();
+        JsonNode json = JsonHelper.getFirstNode(body);
+        if (json != null) {
+            String username = JsonHelper.get(json, GlobusAttributesDefinition.USERNAME).toString().split("@")[0];
+            profile.setId(username);
+            profile.addAttribute(EurekaAttributesDefinition.USERNAME, username);
+            profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GlobusAttributesDefinition.FULLNAME));
+            profile.addAttribute(EurekaAttributesDefinition.EMAIL, JsonHelper.get(json, GlobusAttributesDefinition.EMAIL));
+        }
+        return profile;
+    }
 }

@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext.profile;
  * limitations under the License.
  * #L%
  */
-
 import java.util.Locale;
 import org.scribe.up.profile.AttributesDefinition;
 import org.scribe.up.profile.BaseOAuthProfile;
@@ -31,62 +30,62 @@ import org.scribe.up.profile.Gender;
  * @author arpost
  */
 public abstract class EurekaProfile extends BaseOAuthProfile implements CommonProfile {
-	
-	public abstract String getType();
-	
-	@Override
+
+    public abstract String getType();
+
+    @Override
     protected AttributesDefinition getAttributesDefinition() {
         return OAuthAttributesDefinitions.eurekaDefinition;
     }
-	
-	@Override
-	public String getEmail() {
-		return (String) get(EurekaAttributesDefinition.EMAIL);
-	}
 
-	@Override
-	public String getFirstName() {
-		return (String) get(EurekaAttributesDefinition.FIRSTNAME);
-	}
+    @Override
+    public String getEmail() {
+        return (String) get(EurekaAttributesDefinition.EMAIL);
+    }
 
-	@Override
-	public String getFamilyName() {
-		return (String) get(EurekaAttributesDefinition.LASTNAME);
-	}
+    @Override
+    public String getFirstName() {
+        return (String) get(EurekaAttributesDefinition.FIRSTNAME);
+    }
 
-	@Override
-	public String getDisplayName() {
-		return (String) get(EurekaAttributesDefinition.FULLNAME);
-	}
+    @Override
+    public String getFamilyName() {
+        return (String) get(EurekaAttributesDefinition.LASTNAME);
+    }
 
-	@Override
-	public String getUsername() {
-		return (String) get(EurekaAttributesDefinition.USERNAME);
-	}
+    @Override
+    public String getDisplayName() {
+        return (String) get(EurekaAttributesDefinition.FULLNAME);
+    }
 
-	@Override
-	public Gender getGender() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public String getUsername() {
+        return (String) get(EurekaAttributesDefinition.USERNAME);
+    }
 
-	@Override
-	public Locale getLocale() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public Gender getGender() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	@Override
-	public String getPictureUrl() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public Locale getLocale() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	@Override
-	public String getProfileUrl() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public String getPictureUrl() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	@Override
-	public String getLocation() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-	
+    @Override
+    public String getProfileUrl() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getLocation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

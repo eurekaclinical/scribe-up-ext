@@ -19,17 +19,17 @@ package org.eurekaclinical.scribeupext.profile;
  * limitations under the License.
  * #L%
  */
-
 /**
  *
  * @author Andrew Post
  */
 public class GitHubProfile extends EurekaProfile {
-	private static final long serialVersionUID = 1;
 
-	@Override
-	public String getType() {
-		return "GitHub";
-	}
-	
+    private static final long serialVersionUID = 1;
+
+    @Override
+    public String getType() {
+        return "GitHub";
+    }
+
 }

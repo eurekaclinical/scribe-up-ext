@@ -19,13 +19,13 @@ package org.eurekaclinical.scribeupext.profile;
  * limitations under the License.
  * #L%
  */
-
 /**
  *
  * @author Andrew Post
  */
 public class GlobusAttributesDefinition {
-	public static final String USERNAME = "preferred_username";
-	public static final String FULLNAME = "name";
-	public static final String EMAIL = "email";
+
+    public static final String USERNAME = "preferred_username";
+    public static final String FULLNAME = "name";
+    public static final String EMAIL = "email";
 }

@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext.profile;
  * limitations under the License.
  * #L%
  */
-
 import org.scribe.up.profile.AttributesDefinition;
 
 /**
@@ -27,5 +26,6 @@ import org.scribe.up.profile.AttributesDefinition;
  * @author Andrew Post
  */
 public class OAuthAttributesDefinitions {
-	public static final AttributesDefinition eurekaDefinition = new EurekaAttributesDefinition();
+
+    public static final AttributesDefinition eurekaDefinition = new EurekaAttributesDefinition();
 }

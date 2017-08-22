@@ -19,16 +19,16 @@ package org.eurekaclinical.scribeupext.profile;
  * limitations under the License.
  * #L%
  */
-
 /**
  *
  * @author Andrew Post
  */
 public class GoogleProfile extends EurekaProfile {
-	private static final long serialVersionUID = 1;
-	
-	@Override
-	public String getType() {
-		return "Google";
-	}
+
+    private static final long serialVersionUID = 1;
+
+    @Override
+    public String getType() {
+        return "Google";
+    }
 }

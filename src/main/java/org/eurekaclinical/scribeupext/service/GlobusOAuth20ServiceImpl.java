@@ -23,7 +23,6 @@ package org.eurekaclinical.scribeupext.service;
  * This was done to resolve a change in Globus Authenticaton that required the redirect to be in the 
  * access token call as well
  */
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.scribe.builder.api.DefaultApi20;
 import org.scribe.model.OAuthConfig;
@@ -40,44 +39,45 @@ import org.scribe.up.profile.JsonHelper;
  * @author Andrew Post
  */
 public class GlobusOAuth20ServiceImpl extends OAuth20ServiceImpl {
-	protected final DefaultApi20 api;
-	protected final OAuthConfig config;
-	protected final String proxyHost;
-	protected final int proxyPort;
 
-	public GlobusOAuth20ServiceImpl(DefaultApi20 api, OAuthConfig config,
-			String proxyHost, int proxyPort) {
-		super(api, config);
-		this.api = api;
-		this.config = config;
-		this.proxyHost = proxyHost;
-		this.proxyPort = proxyPort;
-	}
+    protected final DefaultApi20 api;
+    protected final OAuthConfig config;
+    protected final String proxyHost;
+    protected final int proxyPort;
 
-	@Override
-	public Token getAccessToken(Token requestToken, Verifier verifier) {
-		OAuthRequest request = 
-				new ProxyOAuthRequest(this.api.getAccessTokenVerb(), 
-						this.api.getAccessTokenEndpoint(), this.proxyHost, this.proxyPort);
-		String userpass = this.config.getApiKey() + ":" + this.config.getApiSecret();
-		String basicAuth = "Basic " + javax.xml.bind.DatatypeConverter.printBase64Binary(userpass.getBytes());
-		request.addHeader("Authorization", basicAuth);
-		request.addBodyParameter("grant_type", "authorization_code");
-		request.addBodyParameter("code", verifier.getValue());
-		request.addBodyParameter("redirect_uri", config.getCallback());
-		Response response = request.send();
-		String body = response.getBody();
-		JsonNode json = JsonHelper.getFirstNode(body);
-		if (json != null) {
-			return new Token((String) JsonHelper.get(json, "access_token"), "", body);
-		} else {
-			return null;
-		}
-		
-	}
+    public GlobusOAuth20ServiceImpl(DefaultApi20 api, OAuthConfig config,
+            String proxyHost, int proxyPort) {
+        super(api, config);
+        this.api = api;
+        this.config = config;
+        this.proxyHost = proxyHost;
+        this.proxyPort = proxyPort;
+    }
 
-	@Override
-	public void signRequest(Token accessToken, OAuthRequest request) {
-		request.addHeader("Authorization", "Bearer " + accessToken.getToken());
-	}
+    @Override
+    public Token getAccessToken(Token requestToken, Verifier verifier) {
+        OAuthRequest request
+                = new ProxyOAuthRequest(this.api.getAccessTokenVerb(),
+                        this.api.getAccessTokenEndpoint(), this.proxyHost, this.proxyPort);
+        String userpass = this.config.getApiKey() + ":" + this.config.getApiSecret();
+        String basicAuth = "Basic " + javax.xml.bind.DatatypeConverter.printBase64Binary(userpass.getBytes());
+        request.addHeader("Authorization", basicAuth);
+        request.addBodyParameter("grant_type", "authorization_code");
+        request.addBodyParameter("code", verifier.getValue());
+        request.addBodyParameter("redirect_uri", config.getCallback());
+        Response response = request.send();
+        String body = response.getBody();
+        JsonNode json = JsonHelper.getFirstNode(body);
+        if (json != null) {
+            return new Token((String) JsonHelper.get(json, "access_token"), "", body);
+        } else {
+            return null;
+        }
+
+    }
+
+    @Override
+    public void signRequest(Token accessToken, OAuthRequest request) {
+        request.addHeader("Authorization", "Bearer " + accessToken.getToken());
+    }
 }

@@ -19,7 +19,6 @@ package org.eurekaclinical.scribeupext;
  * limitations under the License.
  * #L%
  */
-
 import org.scribe.builder.api.DefaultApi20;
 import org.scribe.extractors.AccessTokenExtractor;
 import org.scribe.extractors.JsonTokenExtractor;
@@ -33,33 +32,34 @@ import org.scribe.utils.Preconditions;
  * @author Andrew Post
  */
 public class GlobusApi extends DefaultApi20 {
-	private static final String AUTHORIZE_URL = "https://auth.globus.org/v2/oauth2/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=%s";
-	
-	/**
-	 * Space-delimited set of scopes.
-	 */
-	private static final String SCOPES = "openid email profile";
-	
-	@Override
-	public String getAccessTokenEndpoint() {
-		return "https://auth.globus.org/v2/oauth2/token";
-	}
-	
-	@Override
-	public Verb getAccessTokenVerb() {
-		return Verb.POST;
-	}
 
-	@Override
-	public AccessTokenExtractor getAccessTokenExtractor() {
-		return new JsonTokenExtractor();
-	}
-	
-	@Override
-	public String getAuthorizationUrl(OAuthConfig config) {
-		Preconditions.checkValidUrl(config.getCallback(),
-				"Must provide a valid url as callback.");
-		return String.format(AUTHORIZE_URL, config.getApiKey(), 
-				OAuthEncoder.encode(config.getCallback()), SCOPES);
-	}
+    private static final String AUTHORIZE_URL = "https://auth.globus.org/v2/oauth2/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=%s";
+
+    /**
+     * Space-delimited set of scopes.
+     */
+    private static final String SCOPES = "openid email profile";
+
+    @Override
+    public String getAccessTokenEndpoint() {
+        return "https://auth.globus.org/v2/oauth2/token";
+    }
+
+    @Override
+    public Verb getAccessTokenVerb() {
+        return Verb.POST;
+    }
+
+    @Override
+    public AccessTokenExtractor getAccessTokenExtractor() {
+        return new JsonTokenExtractor();
+    }
+
+    @Override
+    public String getAuthorizationUrl(OAuthConfig config) {
+        Preconditions.checkValidUrl(config.getCallback(),
+                "Must provide a valid url as callback.");
+        return String.format(AUTHORIZE_URL, config.getApiKey(),
+                OAuthEncoder.encode(config.getCallback()), SCOPES);
+    }
 }
