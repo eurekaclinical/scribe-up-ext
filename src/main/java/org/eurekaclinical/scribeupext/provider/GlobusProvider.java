@@ -38,11 +38,22 @@ import org.scribe.up.provider.BaseOAuth20Provider;
 import org.scribe.up.provider.exception.HttpException;
 
 /**
- * Extracts the user's Globus profile.
+ * Extracts the user's Globus profile. 
  * 
+ * Globus changed their usernames in August, 2017 by appending 
+ * <code>@globusid.org</code> to them. This is true even for user accounts that
+ * predate the change. To give some time for users of this library to move to 
+ * the new username scheme, we provide a system property, 
+ * <code>scribeupext.globus.legacyUsernames</code>, which if <code>true</code>, 
+ * will cause this class to remove the <code>@globusid.org</code> suffix from 
+ * usernames when extracting a user's profile. This system property may be
+ * removed in the next major release.
+ *
  * @author Andrew Post
  */
 public class GlobusProvider extends BaseOAuth20Provider {
+
+    private static final boolean LEGACY_USERNAMES = Boolean.getBoolean("scribeupext.globus.legacyUsernames");
 
     @Override
     protected GlobusProvider newProvider() {
@@ -59,7 +70,7 @@ public class GlobusProvider extends BaseOAuth20Provider {
 
     /**
      * Returns the current URL for requesting the user's profile.
-     * 
+     *
      * @return the URL for requesting the user's profile.
      */
     @Override
@@ -88,11 +99,14 @@ public class GlobusProvider extends BaseOAuth20Provider {
     }
 
     /**
-     * Returns the user's profile using the attributes that Eureka! Clinical 
-     * expects.
-     * 
+     * Returns the user's profile using the attributes that Eureka! Clinical
+     * expects. If the system property 
+     * <code>scribeupext.globus.legacyUsernames</code> is set and has value
+     * <code>true</code> (case-insensitive), this method will omit the
+     * <code>@globusid.org</code> suffix when extracting the user's username.
+     *
      * @param body the JSON response from the user profile request.
-     * 
+     *
      * @return the user's profile.
      */
     @Override
@@ -100,7 +114,10 @@ public class GlobusProvider extends BaseOAuth20Provider {
         GlobusProfile profile = new GlobusProfile();
         JsonNode json = JsonHelper.getFirstNode(body);
         if (json != null) {
-            String username = JsonHelper.get(json, GlobusAttributesDefinition.USERNAME).toString().split("@")[0];
+            String username = JsonHelper.get(json, GlobusAttributesDefinition.USERNAME).toString();
+            if (LEGACY_USERNAMES) {
+                username = username.split("@")[0];
+            }
             profile.setId(username);
             profile.addAttribute(EurekaAttributesDefinition.USERNAME, username);
             profile.addAttribute(EurekaAttributesDefinition.FULLNAME, JsonHelper.get(json, GlobusAttributesDefinition.FULLNAME));
