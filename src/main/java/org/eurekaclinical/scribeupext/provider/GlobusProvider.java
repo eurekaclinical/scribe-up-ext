@@ -63,7 +63,8 @@ public class GlobusProvider extends BaseOAuth20Provider {
     /**
      * Initializes the signing of Globus API calls with an access token. A 
      * superclass that overrides this method must call this method in the 
-     * overridden version.
+     * overridden version, or you must override {@link #sendRequestForData(org.scribe.model.Token, java.lang.String) }
+     * with a new implementation.
      */
     @Override
     protected void internalInit() {
@@ -85,8 +86,9 @@ public class GlobusProvider extends BaseOAuth20Provider {
 
     /**
      * Calls any Globus endpoint that requires already being authenticated.
+     * Relies on {@link #internalInit() } to setup request signing.
      * 
-     * @param accessToken the access token to use.
+     * @param accessToken the access token to use when signing the request.
      * @param dataUrl the endpoint to call.
      * @return the response body.
      * 
