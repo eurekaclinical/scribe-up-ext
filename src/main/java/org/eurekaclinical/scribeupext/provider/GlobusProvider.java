@@ -60,6 +60,11 @@ public class GlobusProvider extends BaseOAuth20Provider {
         return new GlobusProvider();
     }
 
+    /**
+     * Initializes the signing of Globus API calls with an access token. A 
+     * superclass that overrides this method must call this method in the 
+     * overridden version.
+     */
     @Override
     protected void internalInit() {
         this.service = new GlobusOAuth20ServiceImpl(new GlobusApi(),
@@ -78,6 +83,15 @@ public class GlobusProvider extends BaseOAuth20Provider {
         return "https://auth.globus.org/v2/oauth2/userinfo";
     }
 
+    /**
+     * Calls any Globus endpoint that requires already being authenticated.
+     * 
+     * @param accessToken the access token to use.
+     * @param dataUrl the endpoint to call.
+     * @return the response body.
+     * 
+     * @throws HttpException if an error occurred calling the endpoint.
+     */
     @Override
     protected String sendRequestForData(Token accessToken, String dataUrl) throws HttpException {
         final ProxyOAuthRequest request = new ProxyOAuthRequest(Verb.GET, dataUrl, this.proxyHost, this.proxyPort);
