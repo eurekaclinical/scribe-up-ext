@@ -18,6 +18,10 @@ This project includes:
   Jackson-annotations under The Apache Software License, Version 2.0
   Jackson-core under The Apache Software License, Version 2.0
   jackson-databind under The Apache Software License, Version 2.0 or Lesser Gnu Public License (LGPL), Version 2.1
+  JavaBeans Activation Framework API jar under CDDL/GPLv2+CE
+  jaxb-api under CDDL 1.1 or GPL2 w/ CPE
+  Old JAXB Core under CDDL+GPL License
+  Old JAXB Runtime under CDDL+GPL License
   Scribe OAuth Library under MIT
   Scribe UP under The Apache Software License, Version 2.0
   ScribeUP Extensions under Apache License, Version 2.0
